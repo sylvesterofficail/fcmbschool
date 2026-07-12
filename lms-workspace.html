@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Active Classroom — FCMB Academy</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="assets/css/style.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            purple: '#5c068c',
+            gold: '#ffb81c',
+            obsidian: '#2e0b56',
+            jade: '#3de896',
+            coral: '#ff859f'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            playfair: ['Playfair Display', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-hero-pattern text-obsidian font-sans min-h-screen flex flex-col antialiased">
+  
+  <!-- Navigation Header -->
+  <nav class="bg-white border-b border-purple/10 py-4 px-6 shrink-0 flex justify-between items-center z-50">
+    <div class="flex items-center gap-4">
+      <img src="assets/images/FCMBPensionsLogo.png" alt="FCMB Logo" class="h-[70px] w-auto">
+      <div class="flex flex-col border-l border-purple/20 pl-3.5">
+        <span class="font-extrabold text-base tracking-wider text-purple uppercase">FCMB Academy</span>
+        <span class="text-[10px] tracking-widest text-slate-400 font-bold uppercase -mt-0.5">Active Classroom</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="dashboard.html" class="text-xs font-bold text-purple hover:bg-purple/5 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
+        <span>← Dashboard</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="grow max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12">
+    <!-- Syllabus Sidebar -->
+    <aside class="lg:col-span-3 bg-white border-r border-slate-100 p-5 space-y-6 overflow-y-auto hidden md:block">
+      <div class="space-y-4">
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Active Module Tracker</h3>
+        <div class="space-y-2">
+          <button class="w-full text-left p-3 rounded-xl bg-purple text-white text-xs font-bold shadow flex justify-between items-center transition">
+            <span>Module 1: Compliance Horizon</span>
+            <span class="text-[9px] bg-white/20 px-2 py-0.5 rounded">Active</span>
+          </button>
+          <button class="w-full text-left p-3 rounded-xl bg-slate-50 text-slate-600 hover:bg-purple/5 text-xs font-bold transition flex justify-between items-center">
+            <span>Module 2: Strategic Advising</span>
+            <span class="text-[9px] text-slate-400">Locked</span>
+          </button>
+          <button class="w-full text-left p-3 rounded-xl bg-slate-50 text-slate-600 hover:bg-purple/5 text-xs font-bold transition flex justify-between items-center">
+            <span>Module 3: Asset Protection</span>
+            <span class="text-[9px] text-slate-400">Locked</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="space-y-3 border-t border-slate-100 pt-6">
+        <h4 class="text-xs font-bold text-purple uppercase tracking-wider flex items-center gap-1.5">
+          <span>🏛️ Document Vault</span>
+        </h4>
+        <div class="space-y-2">
+          <a href="#" onclick="simulateDownload('PenCom_Guidelines_2026.pdf')" class="flex items-center gap-2 p-3 bg-slate-50 hover:bg-purple/5 rounded-xl border border-slate-100 text-xs font-medium text-slate-600 transition hover:border-purple/20">
+            <span class="text-lg">📄</span>
+            <div class="flex flex-col min-w-0">
+              <span class="font-bold truncate text-[11px]">PenCom_Guidelines_2026.pdf</span>
+              <span class="text-[9px] text-slate-400">1.4 MB - PDF Document</span>
+            </div>
+          </a>
+          <a href="#" onclick="simulateDownload('Strategy_Manual_2026.pdf')" class="flex items-center gap-2 p-3 bg-slate-50 hover:bg-purple/5 rounded-xl border border-slate-100 text-xs font-medium text-slate-600 transition hover:border-purple/20">
+            <span class="text-lg">📄</span>
+            <div class="flex flex-col min-w-0">
+              <span class="font-bold truncate text-[11px]">Strategy_Manual_2026.pdf</span>
+              <span class="text-[9px] text-slate-400">2.1 MB - PDF Document</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Interactive Media Console and Quiz Terminal Component -->
+    <main class="lg:col-span-9 p-6 overflow-y-auto space-y-6 flex flex-col">
+      <!-- Custom Styled Video Player Sandbox -->
+      <div class="bg-obsidian rounded-2xl p-5 text-white shadow-xl space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-[9px] font-bold uppercase tracking-widest text-gold bg-white/10 px-2 py-0.5 rounded">Learning Stream Node</span>
+          <span class="text-[10px] text-white/50 flex items-center gap-1.5">
+            <span class="pulse-indicator bg-gold"></span> Segment 1 of 4
+          </span>
+        </div>
+        
+        <div class="relative aspect-video bg-black/40 rounded-2xl border border-white/5 overflow-hidden flex flex-col justify-between group">
+          <!-- Video Cover Image -->
+          <img id="video-cover" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Video cover image" class="absolute inset-0 w-full h-full object-cover opacity-80 transition-opacity duration-300">
+          
+          <!-- Big Play Overlay -->
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+            <button id="video-play-btn" onclick="togglePlay()" class="w-16 h-16 bg-gold text-purple rounded-full flex items-center justify-center shadow-2xl transition hover:scale-105 active:scale-95 pointer-events-auto">
+              <svg id="play-svg" class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              <svg id="pause-svg" class="w-8 h-8 fill-current hidden" viewBox="0 0 24 24">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Top Gradient -->
+          <div class="absolute top-0 inset-x-0 h-16 bg-gradient-to-b from-black/60 to-transparent pointer-events-none"></div>
+
+          <!-- Bottom Control Bar -->
+          <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-4 space-y-3 z-20 transition-all duration-300 opacity-90">
+            <!-- Progress Bar Slider -->
+            <div class="flex items-center gap-3">
+              <span id="player-timer-curr" class="text-[10px] font-mono text-white/80">0:00</span>
+              <div onclick="seekPlayer(event)" class="grow h-1.5 bg-white/20 rounded-full cursor-pointer relative" id="player-progress-container">
+                <div id="player-progress-bar" class="absolute left-0 top-0 bottom-0 bg-gold rounded-full transition-all duration-300" style="width: 0%"></div>
+              </div>
+              <span id="player-timer-total" class="text-[10px] font-mono text-white/80">10:45</span>
+            </div>
+            
+            <!-- Controls Layout -->
+            <div class="flex justify-between items-center text-xs">
+              <div class="flex items-center gap-4">
+                <button onclick="togglePlay()" class="hover:text-gold transition">
+                  <span id="control-play-txt" class="font-bold">Play</span>
+                </button>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-white/60">Volume:</span>
+                  <span class="font-bold text-white">80%</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-[9px] bg-white/10 px-2 py-0.5 rounded text-white/70 font-semibold uppercase">1080p HD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Test Assessment Form Console -->
+      <div class="bg-white border border-slate-100 p-6 rounded-2xl shadow-sm space-y-5">
+        <h3 class="font-extrabold text-sm text-purple border-b border-slate-100 pb-3 flex justify-between items-center">
+          <span>📝 COMPETENCY TESTING INTERFACE</span>
+          <span class="text-xs text-slate-400 font-medium">Question 1/1</span>
+        </h3>
+        <p class="text-xs sm:text-sm font-semibold text-slate-700 leading-relaxed">
+          Which governance body coordinates baseline risk checks and policy alignments inside the implementation pipeline framework?
+        </p>
+        
+        <div class="space-y-3">
+          <label id="quiz-lbl-correct" class="flex items-center p-4 bg-slate-50 hover:bg-purple/5 rounded-xl border border-slate-200 cursor-pointer transition text-xs font-medium relative overflow-hidden">
+            <input type="radio" name="sandbox-quiz" value="correct" class="mr-3 accent-purple w-4.5 h-4.5">
+            <span>The Risk &amp; Compliance Audit Oversight Committee Gate</span>
+          </label>
+          <label id="quiz-lbl-wrong" class="flex items-center p-4 bg-slate-50 hover:bg-purple/5 rounded-xl border border-slate-200 cursor-pointer transition text-xs font-medium relative overflow-hidden">
+            <input type="radio" name="sandbox-quiz" value="wrong" class="mr-3 accent-purple w-4.5 h-4.5">
+            <span>Front-end presentation workspace UI operators</span>
+          </label>
+        </div>
+        
+        <div class="flex gap-3">
+          <button onclick="checkResponse()" class="px-5 py-3 bg-purple hover:bg-obsidian text-white font-bold text-xs rounded-xl tracking-wide transition btn-shimmer">
+            Evaluate Competency Score
+          </button>
+        </div>
+        <div id="response-box" class="hidden text-xs font-bold p-4 rounded-xl border transition-all duration-300"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Simulated Download Status Modal -->
+  <div id="download-toast" class="fixed bottom-6 right-6 bg-obsidian text-white text-xs font-semibold px-4 py-3.5 rounded-xl shadow-2xl border border-purple/20 hidden items-center gap-3 z-50 animate-slide-in">
+    <span class="pulse-indicator"></span>
+    <span id="download-toast-txt">Downloading document...</span>
+  </div>
+
+  <script>
+    let isPlaying = false;
+    let progressInterval = null;
+    let progressVal = 0;
+    
+    function togglePlay() {
+      const playSvg = document.getElementById('play-svg');
+      const pauseSvg = document.getElementById('pause-svg');
+      const playTxt = document.getElementById('control-play-txt');
+      const cover = document.getElementById('video-cover');
+      
+      isPlaying = !isPlaying;
+      
+      if (isPlaying) {
+        playSvg.classList.add('hidden');
+        pauseSvg.classList.remove('hidden');
+        playTxt.innerText = "Pause";
+        cover.style.opacity = '0.2'; // Darken/fade cover image
+        
+        // Start progress timeline simulation
+        progressInterval = setInterval(() => {
+          if (progressVal < 100) {
+            progressVal += 0.5;
+            document.getElementById('player-progress-bar').style.width = progressVal + '%';
+            
+            // Update time
+            const totalSeconds = 645; // 10:45 total
+            const currSeconds = Math.floor((progressVal / 100) * totalSeconds);
+            const m = Math.floor(currSeconds / 60);
+            const s = Math.floor(currSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('player-timer-curr').innerText = `${m}:${s}`;
+          } else {
+            clearInterval(progressInterval);
+            togglePlay(); // Auto-pause at end
+            progressVal = 0;
+          }
+        }, 300);
+      } else {
+        playSvg.classList.remove('hidden');
+        pauseSvg.classList.add('hidden');
+        playTxt.innerText = "Play";
+        cover.style.opacity = '0.8';
+        clearInterval(progressInterval);
+      }
+    }
+    
+    function seekPlayer(e) {
+      const container = document.getElementById('player-progress-container');
+      const rect = container.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const percentage = Math.max(0, Math.min(100, (clickX / rect.width) * 100));
+      progressVal = percentage;
+      document.getElementById('player-progress-bar').style.width = progressVal + '%';
+      
+      const totalSeconds = 645;
+      const currSeconds = Math.floor((progressVal / 100) * totalSeconds);
+      const m = Math.floor(currSeconds / 60);
+      const s = Math.floor(currSeconds % 60).toString().padStart(2, '0');
+      document.getElementById('player-timer-curr').innerText = `${m}:${s}`;
+    }
+
+    function checkResponse() {
+      const selected = document.querySelector('input[name="sandbox-quiz"]:checked');
+      const box = document.getElementById('response-box');
+      const lblCorrect = document.getElementById('quiz-lbl-correct');
+      const lblWrong = document.getElementById('quiz-lbl-wrong');
+      
+      // Reset layout configurations
+      lblCorrect.className = "flex items-center p-4 bg-slate-50 hover:bg-purple/5 rounded-xl border border-slate-200 cursor-pointer transition text-xs font-medium relative overflow-hidden";
+      lblWrong.className = "flex items-center p-4 bg-slate-50 hover:bg-purple/5 rounded-xl border border-slate-200 cursor-pointer transition text-xs font-medium relative overflow-hidden";
+      
+      box.classList.remove('hidden');
+      
+      if (selected && selected.value === 'correct') {
+        lblCorrect.className = "flex items-center p-4 bg-jade/5 rounded-xl border-2 border-jade cursor-pointer transition text-xs font-medium relative overflow-hidden";
+        box.className = "text-jade bg-jade/10 text-xs font-bold p-4 rounded-xl border border-jade/20 block mt-3 animate-fade-in";
+        box.innerText = "🎉 Competency Passed: 100% Score. Module completion logged in central persistence layer successfully.";
+      } else {
+        if (selected) {
+          lblWrong.className = "flex items-center p-4 bg-coral/5 rounded-xl border-2 border-coral cursor-pointer transition text-xs font-medium relative overflow-hidden";
+        }
+        box.className = "text-coral bg-coral/10 text-xs font-bold p-4 rounded-xl border border-coral/20 block mt-3 animate-fade-in";
+        box.innerText = "❌ Competency Failed: Incorrect selection. Risk validation checks failed. Please re-evaluate lesson content.";
+      }
+    }
+
+    function simulateDownload(filename) {
+      const toast = document.getElementById('download-toast');
+      const txt = document.getElementById('download-toast-txt');
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      txt.innerText = `Downloading document ${filename}...`;
+      
+      setTimeout(() => {
+        txt.innerText = `✔ ${filename} downloaded successfully!`;
+        setTimeout(() => {
+          toast.classList.add('hidden');
+          toast.classList.remove('flex');
+        }, 2000);
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

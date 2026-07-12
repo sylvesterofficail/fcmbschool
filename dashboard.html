@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard & Simulator — FCMB Academy</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="assets/css/style.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            purple: '#5c068c',
+            gold: '#ffb81c',
+            obsidian: '#2e0b56',
+            jade: '#3de896',
+            coral: '#ff859f'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            playfair: ['Playfair Display', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-hero-pattern text-obsidian font-sans min-h-screen flex flex-col antialiased">
+
+  <!-- Top Informational Strip -->
+  <div class="bg-obsidian text-white/90 text-xs py-2.5 px-6 border-b border-purple/20 shadow-sm shrink-0">
+    <div class="max-w-7xl mx-auto flex justify-between items-center font-medium">
+      <div class="flex items-center gap-2">
+        <span class="pulse-indicator"></span>
+        <span class="text-gold font-bold tracking-wider uppercase text-[10px]">Secure SSO Gateway Connected</span>
+      </div>
+      <div class="text-[11px] text-gold font-bold bg-purple/30 px-3 py-1 rounded-md">Oluwaseun A. (ID: 4920)</div>
+    </div>
+  </div>
+
+  <!-- Navigation Header -->
+  <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-purple/10 shadow-sm shrink-0">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-4">
+        <img src="assets/images/FCMBPensionsLogo.png" alt="FCMB Logo" class="h-[70px] w-auto">
+        <div class="flex flex-col border-l border-purple/20 pl-3.5">
+          <span class="font-extrabold text-base tracking-wider text-purple uppercase">FCMB Academy</span>
+          <span class="text-[10px] tracking-widest text-slate-400 font-bold uppercase -mt-0.5">Empowering Growth</span>
+        </div>
+      </a>
+      
+      <!-- Desktop Links -->
+      <div class="hidden lg:flex items-center gap-1">
+        <a href="index.html" class="text-xs font-semibold text-slate-600 hover:text-purple hover:bg-purple/5 px-4 py-2 rounded-xl transition">Home</a>
+        <a href="schools.html" class="text-xs font-semibold text-slate-600 hover:text-purple hover:bg-purple/5 px-4 py-2 rounded-xl transition">Our Schools</a>
+        <a href="dashboard.html" class="text-xs font-bold text-purple bg-purple/5 px-4 py-2 rounded-xl transition">Simulator Portal</a>
+        <a href="lms-workspace.html" class="text-xs font-semibold text-slate-600 hover:text-purple hover:bg-purple/5 px-4 py-2 rounded-xl transition">Classroom</a>
+        <a href="performance-analytics.html" class="text-xs font-semibold text-slate-600 hover:text-purple hover:bg-purple/5 px-4 py-2 rounded-xl transition">Analytics</a>
+        <a href="governance.html" class="text-xs font-semibold text-slate-600 hover:text-purple hover:bg-purple/5 px-4 py-2 rounded-xl transition">Governance</a>
+        <a href="architecture.html" class="text-xs font-semibold text-slate-600 hover:text-purple hover:bg-purple/5 px-4 py-2 rounded-xl transition">Architecture</a>
+        <a href="techstack.html" class="text-xs font-semibold text-slate-600 hover:text-purple hover:bg-purple/5 px-4 py-2 rounded-xl transition">Tech Stack</a>
+        <a href="roadmap.html" class="text-xs font-semibold text-slate-600 hover:text-purple hover:bg-purple/5 px-4 py-2 rounded-xl transition">Roadmap</a>
+      </div>
+      
+      <!-- Mobile Hamburger Button -->
+      <button id="hamburger-btn" class="lg:hidden text-purple p-2 hover:bg-purple/5 rounded-xl transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-[100] bg-obsidian/40 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="absolute right-0 top-0 bottom-0 w-[280px] bg-white p-6 shadow-2xl flex flex-col gap-6 transform translate-x-full transition-transform duration-300">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <span class="font-extrabold text-sm text-purple uppercase">FCMB Academy</span>
+        <button id="mobile-close-btn" class="text-slate-400 hover:text-purple transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="flex flex-col gap-3 text-sm font-semibold text-slate-600">
+        <a href="index.html" class="hover:text-purple hover:bg-purple/5 px-4 py-2.5 rounded-xl transition">Home</a>
+        <a href="schools.html" class="hover:text-purple hover:bg-purple/5 px-4 py-2.5 rounded-xl transition">Our Schools</a>
+        <a href="dashboard.html" class="text-purple bg-purple/5 px-4 py-2.5 rounded-xl transition">Simulator Portal</a>
+        <a href="lms-workspace.html" class="hover:text-purple hover:bg-purple/5 px-4 py-2.5 rounded-xl transition">Classroom</a>
+        <a href="performance-analytics.html" class="hover:text-purple hover:bg-purple/5 px-4 py-2.5 rounded-xl transition">Analytics</a>
+        <a href="governance.html" class="hover:text-purple hover:bg-purple/5 px-4 py-2.5 rounded-xl transition">Governance</a>
+        <a href="architecture.html" class="hover:text-purple hover:bg-purple/5 px-4 py-2.5 rounded-xl transition">Architecture</a>
+        <a href="techstack.html" class="hover:text-purple hover:bg-purple/5 px-4 py-2.5 rounded-xl transition">Tech Stack</a>
+        <a href="roadmap.html" class="hover:text-purple hover:bg-purple/5 px-4 py-2.5 rounded-xl transition">Roadmap</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="grow max-w-7xl w-full mx-auto px-6 py-10 space-y-10">
+    
+    <!-- User Welcome and Overall Progress -->
+    <div class="bg-gradient-to-r from-purple to-obsidian rounded-3xl p-8 text-white shadow-xl relative overflow-hidden reveal">
+      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="space-y-2">
+          <span class="text-[9px] font-bold bg-gold text-purple px-2 py-0.5 rounded uppercase tracking-wider">LMS Infrastructure Master Spec</span>
+          <h1 class="font-playfair text-3xl sm:text-4xl font-bold mt-2">Welcome Back, Oluwaseun</h1>
+          <p class="text-white/70 text-xs sm:text-sm max-w-xl font-light">Your active training track is aligned with the 2026 Strategic Transformation Framework.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 min-w-[240px] space-y-2">
+          <div class="flex justify-between text-xs font-semibold">
+            <span>Overall Training Progress</span>
+            <span class="text-gold">76.4%</span>
+          </div>
+          <div class="w-full h-2 bg-white/20 rounded-full overflow-hidden">
+            <div class="h-full bg-gold transition-all duration-1000" style="width: 76.4%"></div>
+          </div>
+          <div class="text-[10px] text-white/50 flex justify-between">
+            <span>4/6 Schools Completed</span>
+            <span>2 in Progress</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats Grid -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-6 reveal stagger-1">
+      <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between hover-float">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Active Cohorts</span>
+        <span class="text-2xl font-black text-purple mt-2">1,280 Learners</span>
+      </div>
+      <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between hover-float">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Total Training Hours</span>
+        <span class="text-2xl font-black text-purple mt-2">12,450 hrs</span>
+      </div>
+      <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between hover-float">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Average Test Score</span>
+        <span class="text-2xl font-black text-purple mt-2">88.5%</span>
+      </div>
+      <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between hover-float">
+        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">System Status</span>
+        <span class="text-sm font-bold text-jade mt-2 flex items-center gap-1">
+          <span class="pulse-indicator"></span> Core Services Online
+        </span>
+      </div>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Active Simulator Module -->
+      <section class="lg:col-span-8 bg-white border border-slate-100 p-6 rounded-2xl shadow-sm space-y-6 reveal stagger-2">
+        <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+          <h3 class="font-extrabold text-sm text-purple uppercase">📝 Interactive Assessment Engine Sandbox</h3>
+          <span class="text-[10px] font-bold bg-purple/10 text-purple px-2 py-0.5 rounded">Topic: Stack Persistence</span>
+        </div>
+        <p class="text-xs sm:text-sm font-semibold text-slate-700 leading-relaxed">
+          Under the proposed tech stack, what database solution fulfills the specifications for the structural persistence layer of Academy analytics and tracking modules?
+        </p>
+        
+        <div class="space-y-3">
+          <label id="lbl-correct" class="flex items-center p-4 bg-slate-50 hover:bg-purple/5 rounded-xl border border-slate-200 cursor-pointer transition text-xs font-medium relative overflow-hidden">
+            <input type="radio" name="blueprint-db-quiz" value="correct" class="mr-3 accent-purple w-4 h-4">
+            <span>Foundational PostgreSQL Database Integration Layers</span>
+          </label>
+          <label id="lbl-wrong" class="flex items-center p-4 bg-slate-50 hover:bg-purple/5 rounded-xl border border-slate-200 cursor-pointer transition text-xs font-medium relative overflow-hidden">
+            <input type="radio" name="blueprint-db-quiz" value="wrong" class="mr-3 accent-purple w-4 h-4">
+            <span>Volatile unmapped client-side layout cookie stores</span>
+          </label>
+        </div>
+        
+        <div class="flex gap-4">
+          <button onclick="evaluateInput()" class="px-5 py-3 bg-purple hover:bg-obsidian text-white font-bold text-xs rounded-xl tracking-wide transition btn-shimmer">
+            Submit Assessment Parameter
+          </button>
+          <a href="lms-workspace.html" class="px-5 py-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold text-xs rounded-xl tracking-wide transition flex items-center justify-center">
+            Go to Active Classroom →
+          </a>
+        </div>
+        
+        <div id="eval-msg-box" class="hidden text-xs font-bold p-4 rounded-xl border transition-all duration-300"></div>
+      </section>
+
+      <!-- Strategy & Blueprint Panel -->
+      <section class="lg:col-span-4 bg-white border border-slate-100 p-6 rounded-2xl shadow-sm space-y-4 reveal stagger-3">
+        <h3 class="font-extrabold text-xs text-slate-400 uppercase tracking-wider">Blueprint Reference Spec Mapping</h3>
+        
+        <div class="p-4 bg-purple-light rounded-2xl border border-purple/5 space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">📄</span>
+            <div class="flex flex-col min-w-0">
+              <span class="text-xs font-bold text-purple truncate">Virtual_Academy_Blueprint.pptx</span>
+              <span class="text-[10px] text-slate-400">Target Dev Specs</span>
+            </div>
+          </div>
+          <div class="text-[10px] text-slate-600 leading-relaxed font-light">
+            Platform design, workflows, and curriculum details mapped directly from corporate directives.
+          </div>
+        </div>
+
+        <div class="space-y-3 pt-2">
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-slate-500 font-medium">LMS Module Sync</span>
+            <span class="text-purple font-bold">100% Configured</span>
+          </div>
+          <div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+            <div class="h-full bg-purple" style="width: 100%"></div>
+          </div>
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-slate-500 font-medium">Knowledge Portal Vault</span>
+            <span class="text-purple font-bold">85% Indexed</span>
+          </div>
+          <div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+            <div class="h-full bg-purple" style="width: 85%"></div>
+          </div>
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-slate-500 font-medium">Leadership Center Sync</span>
+            <span class="text-purple font-bold">50% Mapping</span>
+          </div>
+          <div class="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+            <div class="h-full bg-purple" style="width: 50%"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Strategic Pillars Cards Section -->
+    <section class="space-y-6 reveal">
+      <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider text-center">Executive Synthesis: Three Platforms in One</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-3 hover-float">
+          <div class="text-2xl">📚</div>
+          <h4 class="font-bold text-sm text-purple uppercase">Learning Management (LMS)</h4>
+          <p class="text-xs text-slate-500 leading-relaxed font-light">The engine for operational excellence, delivering targeted training and internal certifications.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-3 hover-float">
+          <div class="text-2xl">🏛️</div>
+          <h4 class="font-bold text-sm text-purple uppercase">Knowledge Portal</h4>
+          <p class="text-xs text-slate-500 leading-relaxed font-light">The institutional vault, preserving core organizational intelligence, internal policies, and operational history.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-3 hover-float">
+          <div class="text-2xl">👑</div>
+          <h4 class="font-bold text-sm text-purple uppercase">Leadership Center</h4>
+          <p class="text-xs text-slate-500 leading-relaxed font-light">The talent pipeline, focused on building future corporate leaders and ensuring seamless succession planning.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-[#14141a] text-slate-400 py-16 px-6 border-t border-white/5 shrink-0">
+    <div class="max-w-7xl mx-auto space-y-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+        <!-- Brand & Contact -->
+        <div class="lg:col-span-4 space-y-6">
+          <div class="flex items-center gap-3">
+            <div class="bg-white p-2 rounded-xl inline-flex items-center">
+              <img src="assets/images/FCMBPensionsLogo.png" alt="FCMB Logo" class="h-[60px] w-auto">
+            </div>
+            <div class="flex flex-col border-l border-white/10 pl-3">
+              <span class="font-extrabold text-sm tracking-wider text-white uppercase">FCMB Academy</span>
+              <span class="text-[9px] tracking-widest text-slate-500 font-bold uppercase -mt-0.5">Empowering Growth</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed max-w-sm">
+            Plot 207, Zakaria Maimalari Street, Cadastral Zone AO, Central Business District, Abuja.
+          </p>
+          <div class="space-y-2 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="text-slate-500">📞</span>
+              <a href="tel:+2348059580002" class="hover:text-gold transition">+234 (0) 805 958 0002</a>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-500">✉️</span>
+              <a href="mailto:academy@fcmb.com" class="hover:text-gold transition">academy@fcmb.com</a>
+            </div>
+          </div>
+          <!-- Social Icons -->
+          <div class="flex gap-2">
+            <a href="https://twitter.com/fcmbpensions" target="_blank" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-gold hover:text-obsidian flex items-center justify-center transition text-slate-400">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/fcmbpensions/" target="_blank" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-gold hover:text-obsidian flex items-center justify-center transition text-slate-400">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/fcmbpensions/" target="_blank" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-gold hover:text-obsidian flex items-center justify-center transition text-slate-400">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/fcmb-pensions/" target="_blank" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-gold hover:text-obsidian flex items-center justify-center transition text-slate-400">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- About Us Links -->
+        <div class="lg:col-span-2 space-y-4">
+          <h4 class="text-white text-xs font-bold uppercase tracking-wider">About Us</h4>
+          <ul class="space-y-2.5 text-xs">
+            <li><a href="https://fcmbpensions.com/about-us" target="_blank" class="hover:text-gold transition">Who We Are</a></li>
+            <li><a href="https://fcmbpensions.com/our-board" target="_blank" class="hover:text-gold transition">Our Board</a></li>
+            <li><a href="https://fcmbpensions.com/management-team" target="_blank" class="hover:text-gold transition">Management Team</a></li>
+            <li><a href="https://fcmbpensions.com/our-partners" target="_blank" class="hover:text-gold transition">Our Partners</a></li>
+            <li><a href="https://fcmbpensions.com/career" target="_blank" class="hover:text-gold transition">Careers</a></li>
+          </ul>
+        </div>
+
+        <!-- Academy Directory -->
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="text-white text-xs font-bold uppercase tracking-wider">Academy Directory</h4>
+          <ul class="space-y-2.5 text-xs">
+            <li><a href="schools.html" class="hover:text-gold transition">Our Learning Schools</a></li>
+            <li><a href="dashboard.html" class="hover:text-gold transition">Simulator Sandbox Portal</a></li>
+            <li><a href="lms-workspace.html" class="hover:text-gold transition">Active Classroom Space</a></li>
+            <li><a href="performance-analytics.html" class="hover:text-gold transition">Performance Analytics</a></li>
+            <li><a href="governance.html" class="hover:text-gold transition">Governance Framework</a></li>
+            <li><a href="architecture.html" class="hover:text-gold transition">Functional Architecture</a></li>
+            <li><a href="techstack.html" class="hover:text-gold transition">Technology stack deck</a></li>
+            <li><a href="roadmap.html" class="hover:text-gold transition">Rollout Implementation Roadmap</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="lg:col-span-3 space-y-4">
+          <h4 class="text-white text-xs font-bold uppercase tracking-wider">Newsletter</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Get updates on rollout phases and curriculum announcements directly to your inbox.
+          </p>
+          <div class="flex gap-2 pt-2">
+            <input type="email" id="footer-newsletter-email" placeholder="Your email address" class="bg-white/5 border border-white/10 text-white placeholder-white/30 text-xs px-3 py-2 rounded-lg focus:outline-none focus:border-gold grow">
+            <button onclick="triggerFooterSub()" class="bg-gold hover:bg-gold-hover text-obsidian text-xs font-bold px-3 py-2 rounded-lg transition shrink-0">Subscribe</button>
+          </div>
+          <div id="footer-sub-msg" class="text-[10px] text-jade font-bold hidden"></div>
+        </div>
+      </div>
+
+      <!-- Legal bottom strip -->
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] text-slate-500">
+        <span>© 2026 FCMB Limited. All rights reserved.</span>
+        <div class="flex gap-4">
+          <a href="https://fcmbpensions.com/privacy" target="_blank" class="hover:text-gold transition">Privacy &amp; Security</a>
+          <a href="#" class="hover:text-gold transition">Terms of Use</a>
+          <a href="dashboard.html" class="hover:text-gold transition">Portal Login</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+  <script>
+    function evaluateInput() {
+      const selected = document.querySelector('input[name="blueprint-db-quiz"]:checked');
+      const box = document.getElementById('eval-msg-box');
+      const lblCorrect = document.getElementById('lbl-correct');
+      const lblWrong = document.getElementById('lbl-wrong');
+      
+      // Reset card borders
+      lblCorrect.className = "flex items-center p-4 bg-slate-50 hover:bg-purple/5 rounded-xl border border-slate-200 cursor-pointer transition text-xs font-medium relative overflow-hidden";
+      lblWrong.className = "flex items-center p-4 bg-slate-50 hover:bg-purple/5 rounded-xl border border-slate-200 cursor-pointer transition text-xs font-medium relative overflow-hidden";
+      
+      box.classList.remove('hidden');
+      
+      if (selected && selected.value === 'correct') {
+        lblCorrect.className = "flex items-center p-4 bg-jade/5 rounded-xl border-2 border-jade cursor-pointer transition text-xs font-medium relative overflow-hidden";
+        box.className = "text-jade bg-jade/10 text-xs font-bold p-4 rounded-xl border border-jade/20 block animate-fade-in";
+        box.innerText = "🎉 Evaluation Success: Correct platform parameters selected. PostgreSQL database layer coordinates synced successfully.";
+      } else {
+        if (selected) {
+          lblWrong.className = "flex items-center p-4 bg-coral/5 rounded-xl border-2 border-coral cursor-pointer transition text-xs font-medium relative overflow-hidden";
+        }
+        box.className = "text-coral bg-coral/10 text-xs font-bold p-4 rounded-xl border border-coral/20 block animate-fade-in";
+        box.innerText = "❌ Validation Failure: Incorrect infrastructure mapping selection. Volatile stores do not satisfy database specifications.";
+      }
+    }
+  </script>
+</body>
+</html>
